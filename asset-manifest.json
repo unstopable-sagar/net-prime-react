@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/net-prime-react/static/css/main.0866bad4.css",
+    "main.js": "/net-prime-react/static/js/main.f6ef8c30.js",
+    "index.html": "/net-prime-react/index.html",
+    "main.0866bad4.css.map": "/net-prime-react/static/css/main.0866bad4.css.map",
+    "main.f6ef8c30.js.map": "/net-prime-react/static/js/main.f6ef8c30.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0866bad4.css",
+    "static/js/main.f6ef8c30.js"
+  ]
+}
