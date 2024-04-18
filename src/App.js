@@ -44,7 +44,7 @@ export default function App() {
                 setIsLoading(true);
                 // So basically, always before we start fetching data, we reset the error.
                 setError('');
-                const response = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+                const response = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
                     { signal: controller.signal }
                 );
 
