@@ -404,10 +404,10 @@ function Footer() {
     return (
         <footer className="footer">
             <div className="links">
-                <i class="fa-brands fa-facebook"></i>
-                <i class="fa-brands fa-square-instagram"></i>
-                <i class="fa-brands fa-twitter"></i>
-                <i class="fa-brands fa-youtube"></i>
+                <i className="fa-brands fa-facebook"></i>
+                <i className="fa-brands fa-square-instagram"></i>
+                <i className="fa-brands fa-twitter"></i>
+                <i className="fa-brands fa-youtube"></i>
             </div>
             <div className="detail-section">
                 <ul>
