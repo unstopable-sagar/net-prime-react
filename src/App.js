@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import StarRating from './StarRating'
 import { Link } from "react-router-dom";
 import { MyRoute } from "./MyRoute";
@@ -156,7 +156,10 @@ function Logo() {
 }
 
 function SearchBar({ query, setQuery }) {
-
+    const inputElement = useRef(null)
+    useEffect(()=>{
+        inputElement.current.focus()
+    },[])
     return (
         <input
             className="search"
@@ -164,6 +167,7 @@ function SearchBar({ query, setQuery }) {
             placeholder="Search movies..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            ref={inputElement}
         />
     )
 }
@@ -234,6 +238,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     const [isLoading, setIsLoading] = useState(false);
     const [userRating, setUserRating] = useState('');
     const watchedUserRating = watched.find(movie => movie.imdbID === selectedId)?.userRating
+    const [isRatingProvided, setIsRatingProvided] = useState(false)
 
     // const isWatched = watched.find(item => item === movie)
     const isWatched = watched.map(item => item.imdbID)
@@ -266,6 +271,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
             const data = await res.json();
             setMovie(data)
             setIsLoading(false);
+            setIsRatingProvided(false);
         }
         getMovieDetails()
     }, [selectedId])
@@ -296,9 +302,9 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 
                     <section className="movie-details-below">
                         {!isWatched ?
-                            <div className="rating" key={movie.imdbID}>
+                            <div className="rating" key={movie.imdbID} onClick={()=>setIsRatingProvided(true)}>
                                 <StarRating maxRating={10} size={44} onSetRating={setUserRating} />
-                                {userRating > 0 && <button className="add-to-list" onClick={handleAdd} >+ Add to list</button>}
+                                {isRatingProvided && userRating > 0 && <button className="add-to-list" onClick={handleAdd} >+ Add to list</button>}
                             </div> : <p>You rated this movie {watchedUserRating} ⭐.</p>}
 
                         <em>{movie.plot}</em>
