@@ -54,7 +54,7 @@ export default function App() {
 
                 if (data.Response === "False") throw new Error("Movie not found");
 
-                setMovies(data.Search.slice(0,5));
+                setMovies(data.Search.slice(0, 5));
                 setError('');
 
             } catch (err) {
@@ -145,21 +145,30 @@ function ErrorMessage({ message }) {
 
 function Logo() {
     return (
-        
+
         <div className="logo">
             <h1><span role="img">🍿</span> Net-prime</h1>
             {/* <a href="index.html"><span role="img">🍿</span> Net-prime</a> */}
             {/* <Link to='/'>home</Link> */}
         </div>
-        
+
     )
 }
 
 function SearchBar({ query, setQuery }) {
     const inputElement = useRef(null)
-    useEffect(()=>{
+    useEffect(() => {
         inputElement.current.focus()
-    },[])
+        function callBack(e) {
+            if (document.activeElement === inputElement.current) return
+            if (e.code === 'Enter') {
+                inputElement.current.focus()
+                setQuery('')                
+            }
+        }
+        document.addEventListener('keydown', callBack)
+        return () => document.addEventListener('keydown', callBack)
+    }, [setQuery])
     return (
         <input
             className="search"
@@ -302,7 +311,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 
                     <section className="movie-details-below">
                         {!isWatched ?
-                            <div className="rating" key={movie.imdbID} onClick={()=>setIsRatingProvided(true)}>
+                            <div className="rating" key={movie.imdbID} onClick={() => setIsRatingProvided(true)}>
                                 <StarRating maxRating={10} size={44} onSetRating={setUserRating} />
                                 {isRatingProvided && userRating > 0 && <button className="add-to-list" onClick={handleAdd} >+ Add to list</button>}
                             </div> : <p>You rated this movie {watchedUserRating} ⭐.</p>}
