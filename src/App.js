@@ -163,7 +163,7 @@ function SearchBar({ query, setQuery }) {
             if (document.activeElement === inputElement.current) return
             if (e.code === 'Enter') {
                 inputElement.current.focus()
-                setQuery('')                
+                setQuery('')
             }
         }
         document.addEventListener('keydown', callBack)
@@ -246,8 +246,13 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     const [movie, setMovie] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [userRating, setUserRating] = useState('');
-    const watchedUserRating = watched.find(movie => movie.imdbID === selectedId)?.userRating
     const [isRatingProvided, setIsRatingProvided] = useState(false)
+    const countRef = useRef(0)
+
+    useEffect(function () {
+        if (userRating) countRef.current += 1
+    }, [userRating])
+    const watchedUserRating = watched.find(movie => movie.imdbID === selectedId)?.userRating
 
     // const isWatched = watched.find(item => item === movie)
     const isWatched = watched.map(item => item.imdbID)
@@ -261,7 +266,8 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
             poster: movie.Poster,
             imdbRating: Number(movie.imdbRating),
             runtime: Number(movie.Runtime.split(' ').at(0)),
-            userRating
+            userRating,
+            countRatingDecisions: countRef.current,
         }
         onAddWatched(newWatchedMovie);
         onCloseMovie();
