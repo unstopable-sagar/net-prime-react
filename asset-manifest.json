@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/net-prime-react/static/css/main.0866bad4.css",
-    "main.js": "/net-prime-react/static/js/main.a3ad72d4.js",
+    "main.js": "/net-prime-react/static/js/main.17f38ebe.js",
     "index.html": "/net-prime-react/index.html",
     "main.0866bad4.css.map": "/net-prime-react/static/css/main.0866bad4.css.map",
-    "main.a3ad72d4.js.map": "/net-prime-react/static/js/main.a3ad72d4.js.map"
+    "main.17f38ebe.js.map": "/net-prime-react/static/js/main.17f38ebe.js.map"
   },
   "entrypoints": [
     "static/css/main.0866bad4.css",
-    "static/js/main.a3ad72d4.js"
+    "static/js/main.17f38ebe.js"
   ]
 }
